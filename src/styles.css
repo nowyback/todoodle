@@ -1,15 +1,14 @@
 :root {
   --primary-color: #6366f1;
-  --primary-hover: #5558e3;
   --background: #020202;
   --surface: #1a1a1a;
-  --border: #333333;
   --text-primary: #ffffff;
-  --text-secondary: #b3b3b3;
-  --text-muted: #666666;
-  --success: #10b981;
+  --text-secondary: #a0a0a0;
+  --text-muted: #666;
+  --border: #333;
   --danger: #ef4444;
   --warning: #f59e0b;
+  --success: #10b981;
   --warning-light: #fbbf24;
   --progress-red: #ef4444;
   --progress-orange: #f97316;
@@ -496,26 +495,43 @@ body {
 }
 
 .category-filter {
-  padding: 0.375rem 0.75rem;
-  background: var(--surface);
+  padding: 0.5rem 1rem;
   border: 1px solid var(--border);
-  color: var(--text-secondary);
-  border-radius: 0.375rem;
-  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  background: var(--surface);
+  color: var(--text-primary);
   cursor: pointer;
   transition: all 0.2s ease;
+  font-size: 0.875rem;
+  position: relative;
 }
 
 .category-filter:hover {
   background: var(--primary-color);
   color: white;
-  border-color: var(--primary-color);
 }
 
 .category-filter.active {
   background: var(--primary-color);
   color: white;
-  border-color: var(--primary-color);
+}
+
+.category-delete {
+  margin-left: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--danger);
+  border-radius: 0.25rem;
+  background: var(--danger);
+  color: white;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.category-delete:hover {
+  background: #dc2626;
+  transform: scale(1.1);
 }
 
 .todo-category {

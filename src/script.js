@@ -447,6 +447,9 @@ class TodoApp {
       ${this.categories.map(cat => `
         <button class="category-filter ${this.currentCategory === cat ? 'active' : ''}" 
                 onclick="app.setCategory('${cat}')">${this.escapeHtml(cat)}</button>
+        <button class="category-delete" 
+                onclick="app.deleteCategory('${this.escapeHtml(cat)}')"
+                title="Delete category">×</button>
       `).join('')}
     `;
   }
@@ -565,6 +568,40 @@ class TodoApp {
     const todo = this.todos.find(t => t.id === id);
     if (todo) {
       this.updateProgress(id, todo.progress + amount);
+    }
+  }
+
+  deleteCategory(category) {
+    if (category === 'General') {
+      alert('Cannot delete the "General" category');
+      return;
+    }
+    
+    // Check if category has todos
+    const todosInCategory = this.todos.filter(t => t.category === category);
+    if (todosInCategory.length > 0) {
+      const confirmDelete = confirm(`Category "${category}" has ${todosInCategory.length} task(s). Deleting it will move all tasks to "General". Continue?`);
+      if (!confirmDelete) return;
+      
+      // Move todos to General category
+      this.todos.forEach(todo => {
+        if (todo.category === category) {
+          todo.category = 'General';
+        }
+      });
+    }
+    
+    // Remove category
+    this.categories = this.categories.filter(c => c !== category);
+    this.saveCategories();
+    this.renderCategories();
+    this.updateCategorySelect();
+    
+    // If current category was deleted, switch to 'all'
+    if (this.currentCategory === category) {
+      this.setCategory('all');
+    } else {
+      this.render();
     }
   }
 
