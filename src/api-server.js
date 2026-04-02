@@ -80,7 +80,7 @@ Enter your choice (1-6): `;
             console.log('📍 Using environment variable PORT');
             console.log('💡 Set PORT environment variable: PORT=3002');
             console.log('💡 Then restart: npm run api');
-            resolve(null);
+            resolve(null); // Signal to use environment variable
             break;
           default:
             console.log('❌ Invalid choice. Using default port 3001.');
@@ -152,17 +152,22 @@ Enter your choice (1-6): `;
     });
   };
 
-  askForPort().then((port) => {
-    if (port === null) {
-      console.log('Using environment variable PORT');
-      PORT = process.env.PORT;
-      if (!PORT) {
-        console.log('No environment variable PORT set. Using default port 3001.');
-        PORT = 3001;
+  askForPort().then(selectedPort => {
+    if (selectedPort !== null) {
+      // Environment variable mode
+      if (selectedPort === null) {
+        console.log('📍 Using environment variable PORT');
+        PORT = process.env.PORT || 3001;
+      } else {
+        PORT = selectedPort;
+        console.log(`📍 Using port: ${PORT}`);
       }
     } else {
-      PORT = port;
+      // Fallback to hardcoded if no choice made
+      PORT = selectedPort;
+      console.log(`📍 Using port: ${PORT}`);
     }
+    
     startServer();
   });
 } else {
