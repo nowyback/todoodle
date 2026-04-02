@@ -4,6 +4,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const fs = require('fs');
 const path = require('path');
+const readline = require('readline');
 
 const app = express();
 const DATA_FILE = path.join(__dirname, 'todos-api.json');
@@ -24,12 +25,14 @@ try {
 // If no port configured, ask user
 if (!PORT) {
   const readline = require('readline');
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
+  
+  const askForPort = () => {
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
 
-  const question = `
+    const question = `
 🚀 Todoodle API Server Startup
 ===============================
 
@@ -43,70 +46,34 @@ Choose port configuration:
 
 Enter your choice (1-6): `;
 
-  rl.question(question, (answer) => {
-    rl.close();
-    
-    switch (answer.trim()) {
-      case '1':
-        PORT = 3001;
-        console.log('📍 Using default port: 3001');
-        break;
-      case '2':
-        PORT = 3002;
-        console.log('📍 Using port: 3002');
-        break;
-      case '3':
-        PORT = 8000;
-        console.log('📍 Using port: 8000');
-        break;
-      case '4':
-        PORT = 8080;
-        console.log('📍 Using port: 8080');
-        break;
-      case '5':
-        rl.question('Enter custom port (1000-65535): ', (customPort) => {
-          rl.close();
-          PORT = parseInt(customPort);
-          if (isNaN(PORT) || PORT < 1000 || PORT > 65535) {
-            console.log('❌ Invalid port. Using default port 3001.');
-            PORT = 3001;
-          } else {
-            console.log(`📍 Using custom port: ${PORT}`);
-          }
-          startServer();
-        });
-        break;
-      case '6':
-        console.log('📍 Using environment variable PORT');
-        console.log('💡 Set PORT environment variable: PORT=3002');
-        console.log('💡 Then restart: npm run api');
+    return new Promise((resolve) => {
+      rl.question(question, (answer) => {
         rl.close();
-        console.log('⏹️ Server starting in 3 seconds...');
-        console.log('💡 Press Ctrl+C to cancel');
         
-        // Give user time to cancel
-        const cancelTimer = setTimeout(() => {
-          startServer();
-        }, 3000);
-        
-        rl.on('SIGINT', () => {
-          clearTimeout(cancelTimer);
-          rl.close();
-          console.log('❌ Startup cancelled');
-          process.exit(0);
-        });
-        break;
-      default:
-        console.log('❌ Invalid choice. Using default port 3001.');
-        console.log('⏹️ Looking for available ports...');
-        
-        // Try to find available port
-        const commonPorts = [3001, 3002, 3003, 8000, 8080];
-        let availablePort = null;
-        
-        const checkPort = async (port) => {
-          try {
-            const response = await fetch(`http://localhost:${port}/api/health`, {
+        switch (answer.trim()) {
+          case '1':
+            resolve(3001);
+            break;
+          case '2':
+            resolve(3002);
+            break;
+          case '3':
+            resolve(8000);
+            break;
+          case '4':
+            resolve(8080);
+            break;
+          case '5':
+            rl.question('Enter custom port (1000-65535): ', (customPort) => {
+              rl.close();
+              const portNum = parseInt(customPort);
+              if (isNaN(portNum) || portNum < 1000 || portNum > 65535) {
+                console.log('❌ Invalid port. Using default port 3001.');
+                resolve(3001);
+              } else {
+                console.log(`📍 Using custom port: ${portNum}`);
+                resolve(portNum);
+              }
               method: 'GET',
               timeout: 2000
             });
