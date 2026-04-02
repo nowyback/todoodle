@@ -135,3 +135,8 @@ api-config.json
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Mobile specific
+mobile/android/app/build/
+mobile/android/app/release/
+mobile/ios/build/

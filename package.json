@@ -2,12 +2,12 @@
   "name": "todoodle",
   "version": "0.7.1",
   "description": "A minimalist todo app for developers with PWA and mobile support",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "electron .",
     "dev": "electron . --dev",
-    "api": "node api-server.js",
-    "api-dev": "nodemon api-server.js",
+    "api": "node src/api-server.js",
+    "api-dev": "nodemon src/api-server.js",
     "build": "echo 'No build step needed for web app'",
     "pwa": "echo 'PWA ready - serve with any HTTP server'",
     "capacitor:add": "npx cap init Todoodle com.todoodle.app && npx cap add android",
@@ -15,14 +15,23 @@
     "capacitor:open": "npx cap open android",
     "cordova:build": "cordova build android"
   },
-  "keywords": ["todo", "developer", "electron", "minimalist"],
+  "keywords": [
+    "todo",
+    "developer",
+    "electron",
+    "minimalist"
+  ],
   "author": "Developer",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
+    "@capacitor/android": "^8.3.0",
+    "@capacitor/app": "^8.1.0",
+    "@capacitor/cli": "^8.3.0",
+    "@capacitor/core": "^8.3.0",
     "cors": "^2.8.5",
-    "swagger-ui-express": "^5.0.0",
-    "swagger-jsdoc": "^6.2.8"
+    "express": "^4.18.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
     "electron": "^28.0.0"

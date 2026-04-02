@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todoodle</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Todoodle">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <h1 class="title">todoodle</h1>
+            <div class="stats">
+                <span id="completed-count">0</span> / <span id="total-count">0</span>
+            </div>
+        </header>
+
+        <div class="progress-container">
+            <div id="category-progress" class="category-progress-container" style="display: none;">
+                <div class="category-progress-title">
+                    <span class="category-progress-name" id="category-name">Category</span>
+                    <span class="category-progress-stats" id="category-stats">0 / 0 tasks</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="category-progress-fill" class="progress-fill"></div>
+                </div>
+                <div class="progress-text">
+                    <span>Category Progress</span>
+                    <span id="category-progress-percentage" class="progress-percentage">0%</span>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <div class="progress-text">
+                <span>Overall Progress</span>
+                <span id="progress-percentage" class="progress-percentage">0%</span>
+            </div>
+        </div>
+
+        <main class="main-content">
+            <div class="category-container">
+                <div class="category-input-container">
+                    <input 
+                        type="text" 
+                        id="category-input" 
+                        placeholder="Add new category..."
+                        class="category-input"
+                        autocomplete="off"
+                    >
+                    <button id="add-category-btn" class="add-category-btn">Add Category</button>
+                </div>
+                <div id="category-filters" class="category-filters"></div>
+            </div>
+
+            <div class="todo-input-container">
+                <input 
+                    type="text" 
+                    id="todo-input" 
+                    placeholder="Add a new task... (Ctrl+N)"
+                    class="todo-input"
+                    autocomplete="off"
+                >
+                <select id="todo-category" class="category-input">
+                    <option value="General">General</option>
+                </select>
+                <button id="add-btn" class="add-btn">+</button>
+            </div>
+
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">All</button>
+                <button class="filter-tab" data-filter="active">Active</button>
+                <button class="filter-tab" data-filter="completed">Completed</button>
+            </div>
+
+            <div id="todo-list" class="todo-list"></div>
+
+            <div class="clear-completed-container">
+                <button id="clear-completed" class="clear-completed">Clear Completed</button>
+            </div>
+        </main>
+
+        <div id="port-config" class="port-config-container" style="display: none;">
+            <h3 style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">API Port Config</h3>
+            <input 
+                type="number" 
+                id="port-input" 
+                class="port-input" 
+                placeholder="Detecting..." 
+                min="1000" 
+                max="65535"
+                title="Enter new port for API server"
+            >
+            <button id="update-port-btn" class="port-btn">Update Port</button>
+            <div style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-muted);">
+                <div>⚠️ Server restart required after update</div>
+                <div>💡 Port change applies after API server restart</div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="shortcuts">
+                <span class="shortcut">Ctrl+N: New Task</span>
+                <span class="shortcut">Ctrl+D: Toggle Theme</span>
+                <span class="shortcut">Ctrl+P: Port Config</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
