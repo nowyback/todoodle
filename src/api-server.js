@@ -81,10 +81,8 @@ Enter your choice (1-6): `;
         console.log('💡 Set PORT environment variable: PORT=3002');
         console.log('💡 Then restart: npm run api');
         rl.close();
-        setTimeout(() => {
-          console.log('⏹️ Server starting in 3 seconds...');
-          console.log('💡 Press Ctrl+C to cancel');
-        }, 1000);
+        console.log('⏹️ Server starting in 3 seconds...');
+        console.log('💡 Press Ctrl+C to cancel');
         
         // Give user time to cancel
         const cancelTimer = setTimeout(() => {
@@ -100,8 +98,52 @@ Enter your choice (1-6): `;
         break;
       default:
         console.log('❌ Invalid choice. Using default port 3001.');
-        PORT = 3001;
-        startServer();
+        console.log('⏹️ Looking for available ports...');
+        
+        // Try to find available port
+        const commonPorts = [3001, 3002, 3003, 8000, 8080];
+        let availablePort = null;
+        
+        const checkPort = async (port) => {
+          try {
+            const response = await fetch(`http://localhost:${port}/api/health`, {
+              method: 'GET',
+              timeout: 2000
+            });
+            
+            if (response.ok) {
+              availablePort = port;
+              console.log(`✅ Port ${port} is available`);
+              return true;
+            }
+          } catch (err) {
+            // Port is not available
+            return false;
+          }
+        };
+        
+        const checkPorts = async () => {
+          for (const port of commonPorts) {
+            const isAvailable = await checkPort(port);
+            if (isAvailable) {
+              availablePort = port;
+              break;
+            }
+          }
+          
+          if (availablePort) {
+            PORT = availablePort;
+            console.log(`📍 Using available port: ${availablePort}`);
+            startServer();
+          } else {
+            console.log('❌ No common ports available. Using default port 3001.');
+            PORT = 3001;
+            startServer();
+          }
+        };
+        
+        // Start port checking
+        checkPorts();
         break;
     }
   });
