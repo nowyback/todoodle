@@ -1,6 +1,6 @@
-# API Connection Guide
+# Todoodle API Connection Guide
 
-This guide shows how to connect external applications, scripts, or services to your Dev Todo app.
+This guide shows how to connect external applications, scripts, or services to your Todoodle app.
 
 ## 🌐 API Endpoints
 

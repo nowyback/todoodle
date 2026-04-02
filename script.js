@@ -20,7 +20,7 @@ class TodoApp {
 
   async loadTodos() {
     try {
-      const saved = localStorage.getItem('dev-todos');
+      const saved = localStorage.getItem('todoodle-todos');
       if (saved) {
         this.todos = JSON.parse(saved);
       }
@@ -32,7 +32,7 @@ class TodoApp {
 
   async saveTodos() {
     try {
-      localStorage.setItem('dev-todos', JSON.stringify(this.todos));
+      localStorage.setItem('todoodle-todos', JSON.stringify(this.todos));
     } catch (error) {
       console.error('Error saving todos:', error);
     }
@@ -411,7 +411,7 @@ class TodoApp {
 
   saveCategories() {
     try {
-      localStorage.setItem('dev-todo-categories', JSON.stringify(this.categories));
+      localStorage.setItem('todoodle-categories', JSON.stringify(this.categories));
     } catch (error) {
       console.error('Error saving categories:', error);
     }
@@ -419,7 +419,7 @@ class TodoApp {
 
   loadCategories() {
     try {
-      const saved = localStorage.getItem('dev-todo-categories');
+      const saved = localStorage.getItem('todoodle-categories');
       if (saved) {
         this.categories = JSON.parse(saved);
       }

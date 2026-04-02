@@ -1,10 +1,8 @@
-# Dev Todo - A Minimalist Task Manager for Developers
+# Todoodle - A Minimalist Task Manager for Developers
 
 A sleek, feature-rich todo application built with Electron and Express, designed specifically for developers who want both a beautiful desktop app and a powerful REST API.
 
-## ✨ Features
-
-### 🎨 Desktop App
+## 🎨 Desktop App
 - **Minimalist UI** with smooth black background (#020202)
 - **Individual task progress** with color-coded sliders (0-100%)
 - **Custom categories** with filtering and sorting

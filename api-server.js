@@ -30,12 +30,12 @@ const swaggerOptions = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Dev Todo API',
+      title: 'Todoodle API',
       version: '1.0.0',
       description: 'A REST API for managing developer tasks with notes and priorities',
       contact: {
         name: 'API Support',
-        email: 'support@devtodo.com'
+        email: 'support@todoodle.com'
       }
     },
     servers: [

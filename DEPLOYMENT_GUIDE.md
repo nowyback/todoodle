@@ -1,6 +1,6 @@
-# Remote Connection & Deployment Guide
+# Todoodle Remote Connection & Deployment Guide
 
-This guide shows how to connect your Dev Todo app across different countries and locations.
+This guide shows how to connect your Todoodle app across different countries and locations.
 
 ## 🌍 Current Limitation
 
