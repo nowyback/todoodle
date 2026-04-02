@@ -4,9 +4,10 @@ const path = require('path');
 let mainWindow;
 
 function createWindow() {
+  // Create the browser window
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1200,
+    height: 800,
     minWidth: 400,
     minHeight: 300,
     webPreferences: {
@@ -14,13 +15,16 @@ function createWindow() {
       contextIsolation: true,
       preload: path.join(__dirname, 'preload.js')
     },
+    icon: path.join(__dirname, 'assets/icon.png'), // Optional: Add an icon
     titleBarStyle: 'hiddenInset',
     vibrancy: 'under-window',
     visualEffectState: 'active',
+    title: 'Todoodle',
     show: false
   });
 
-  mainWindow.loadFile('index.html');
+  // Load the app
+  mainWindow.loadFile(path.join(__dirname, 'index.html'));
   
   mainWindow.once('ready-to-show', () => {
     mainWindow.show();
