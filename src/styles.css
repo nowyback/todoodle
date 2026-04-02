@@ -492,6 +492,7 @@ body {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 1rem;
+  align-items: stretch;
 }
 
 .category-filter {
@@ -504,6 +505,11 @@ body {
   transition: all 0.2s ease;
   font-size: 0.875rem;
   position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
 }
 
 .category-filter:hover {
@@ -517,7 +523,6 @@ body {
 }
 
 .category-delete {
-  margin-left: 0.1rem;
   padding: 0.2rem 0.4rem;
   border: 1px solid var(--danger);
   border-radius: 0.25rem;
@@ -527,6 +532,7 @@ body {
   font-size: 0.7rem;
   font-weight: bold;
   transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
 .category-delete:hover {
