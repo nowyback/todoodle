@@ -471,6 +471,7 @@ class TodoApp {
 
   async detectCurrentPort() {
     const possiblePorts = [3001, 3002, 3003, 8000, 8080];
+    let detectedPort = null;
     
     for (const port of possiblePorts) {
       try {
@@ -480,6 +481,7 @@ class TodoApp {
         });
         
         if (response.ok) {
+          detectedPort = port;
           document.getElementById('port-input').placeholder = `Current: ${port}`;
           document.getElementById('port-input').title = `API server is running on port ${port}`;
           break;
@@ -489,6 +491,13 @@ class TodoApp {
         continue;
       }
     }
+    
+    if (!detectedPort) {
+      document.getElementById('port-input').placeholder = 'Server not detected';
+      document.getElementById('port-input').title = 'API server not running on common ports (3001, 3002, 3003, 8000, 8080)';
+    }
+    
+    return detectedPort;
   }
 
   async updatePort() {
@@ -501,36 +510,40 @@ class TodoApp {
     }
     
     try {
-      // Try multiple possible ports to find the running API server
-      const possiblePorts = [3001, 3002, 3003, 8000, 8080];
-      let success = false;
+      // First detect current port
+      const currentPort = await this.detectCurrentPort();
       
-      for (const currentPort of possiblePorts) {
-        try {
-          const response = await fetch(`http://localhost:${currentPort}/api/config/port`, {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ port }),
-            timeout: 3000
-          });
-          
-          if (response.ok) {
-            const result = await response.json();
-            alert(`Port updated to ${port}. Please restart the API server to apply changes.\n\nCurrent server is running on port ${currentPort}.`);
-            this.togglePortConfig();
-            success = true;
-            break;
-          }
-        } catch (err) {
-          // Try next port
-          continue;
-        }
+      if (!currentPort) {
+        alert('Could not detect running API server. Make sure it\'s running on one of these ports: 3001, 3002, 3003, 8000, 8080');
+        return;
       }
       
-      if (!success) {
-        alert('Could not connect to API server. Make sure it\'s running on one of these ports: 3001, 3002, 3003, 8000, 8080');
+      // Update port using detected current port
+      const response = await fetch(`http://localhost:${currentPort}/api/config/port`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ port }),
+        timeout: 3000
+      });
+      
+      if (response.ok) {
+        const result = await response.json();
+        alert(`Port updated to ${port}. Please restart the API server to apply changes.\n\nCurrent server is running on port ${currentPort}.\n\nAfter restart, the server will run on port ${port}.`);
+        this.togglePortConfig();
+        
+        // Clear the input field
+        input.value = '';
+        
+        // Try to detect new port after a short delay (in case user restarts quickly)
+        setTimeout(() => {
+          this.detectCurrentPort();
+        }, 1000);
+        
+      } else {
+        const error = await response.json();
+        alert(error.error || 'Failed to update port');
       }
     } catch (error) {
       alert('Failed to update port configuration. Please check if the API server is running.');
