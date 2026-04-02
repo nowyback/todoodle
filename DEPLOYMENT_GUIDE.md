@@ -1,13 +1,5 @@
 # Todoodle Remote Connection & Deployment Guide
 
-This guide shows how to connect your Todoodle app across different countries and locations.
-
-## 🌍 Current Limitation
-
-Your API currently runs on `localhost:3001` - only accessible on your local machine. To connect across countries, you need to make it internet-accessible.
-
-## 🚀 Deployment Options
-
 ### Option 1: Cloud Hosting (Recommended)
 
 #### **Vercel** (Easiest)
@@ -282,15 +274,3 @@ new Date().toISOString();
 // Display in local time
 new Date(timestamp).toLocaleString();
 ```
-
-## 🚀 Next Steps
-
-1. **Choose deployment method** (ngrok for testing, Vercel for production)
-2. **Add authentication** for security
-3. **Update client apps** with new API URL
-4. **Test cross-country connections**
-5. **Consider multi-region** for global scale
-
----
-
-**Your Dev Todo app can now connect users across the globe!** 🌍
