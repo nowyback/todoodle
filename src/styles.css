@@ -493,6 +493,7 @@ body {
   gap: 0.5rem;
   margin-bottom: 1rem;
   align-items: stretch;
+  max-height: none; /* Allow unlimited height for wrapping */
 }
 
 .category-filter {
