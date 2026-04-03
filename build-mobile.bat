@@ -1,5 +1,5 @@
 @echo off
-echo Building Todoodle for Android...
+echo Building Todoodle v0.9.0 for Android...
 echo.
 echo 1. Initialize Capacitor (if not done):
 npm run capacitor:add

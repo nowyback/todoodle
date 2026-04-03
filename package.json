@@ -1,6 +1,6 @@
 {
   "name": "todoodle",
-  "version": "0.7.1",
+  "version": "0.9.0",
   "description": "A minimalist todo app for developers with PWA and mobile support",
   "main": "src/main.js",
   "scripts": {
