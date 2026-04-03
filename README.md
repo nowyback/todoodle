@@ -28,7 +28,14 @@ A sleek, feature-rich todo application built with Electron and Express, designed
 
 ## 🚀 Quick Start
 
-### Desktop App
+### Option 1: Install as Windows App (Recommended)
+```bash
+# Download the latest installer from dist/ folder
+# Run Todoodle Setup 0.7.1.exe
+# Install and search "Todoodle" in Windows Start Menu
+```
+
+### Option 2: Development Mode
 ```bash
 # Install dependencies
 npm install
@@ -102,14 +109,19 @@ PUT /api/config/port
 ## 📁 Project Structure
 
 ```
-├── main.js              # Electron main process
-├── preload.js           # Electron preload script
-├── index.html           # Desktop app UI
-├── styles.css          # Styling
-├── script.js           # Frontend logic
-├── api-server.js       # Express API server
-├── package.json        # Dependencies and scripts
-└── README.md          # This file
+├── src/
+│   ├── main.js           # Electron main process
+│   ├── preload.js        # Electron preload script
+│   ├── index.html        # Desktop app UI
+│   ├── styles.css        # Styling
+│   ├── script.js         # Frontend logic
+│   ├── api-server.js     # Express API server
+│   ├── logo.svg          # Custom app logo
+│   └── icon.ico          # Windows icon (convert from SVG)
+├── dist/                 # Built executables
+├── package.json          # Dependencies and scripts
+├── create-shortcut.bat   # Desktop shortcut creator
+└── README.md             # This file
 ```
 
 ## 🛠️ Technology Stack
@@ -127,6 +139,11 @@ PUT /api/config/port
 - **JSON File Storage** - Simple data persistence
 
 ## 🎨 Customization
+
+### Logo & Branding
+- **Logo**: Edit `src/logo.svg` - rounded corner design with black background
+- **Icon**: Convert `src/logo.svg` to `src/icon.ico` for Windows
+- **Recommended Converter**: https://convertio.co/svg-ico/
 
 ### Themes
 The app uses CSS variables for easy theming:
@@ -166,10 +183,20 @@ Add custom categories through the UI:
 
 ### Building for Production
 ```bash
-# Package as executable (requires electron-builder)
-npm install --save-dev electron-builder
-npx electron-builder
+# Create Windows installer
+npm run dist-win
+
+# Create portable executable
+npm run portable
+
+# Package without installer (for testing)
+npm run pack
 ```
+
+### Installation & Distribution
+- **Installer**: `dist/Todoodle Setup 0.7.1.exe` - Full Windows installer with Start Menu integration
+- **Portable**: Run `npm run portable` for standalone executable
+- **Desktop Shortcut**: Use `create-shortcut.bat` for quick access during development
 
 ## Contributing
 
