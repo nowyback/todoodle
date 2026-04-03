@@ -104,10 +104,56 @@
             </div>
         </div>
 
+        <div class="background-settings-container" id="background-settings" style="display: none;">
+            <h3 style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Theme Settings</h3>
+            
+            <!-- Dark/Light Mode Toggle -->
+            <div class="theme-toggle-container">
+                <div class="toggle-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider"></span>
+                </div>
+            </div>
+            
+            <div class="theme-selector">
+                <label style="display: block; margin-bottom: 0.25rem; font-size: 0.75rem; color: var(--text-secondary);">Choose Theme:</label>
+                <select id="theme-selector" class="port-input" style="margin-bottom: 1rem;">
+                    <option value="default">Default</option>
+                    <option value="dark-matter">Dark Matter</option>
+                    <option value="fallout-terminal">Fallout Terminal</option>
+                    <option value="translucent">Translucent</option>
+                </select>
+                <button class="port-btn" id="apply-theme-btn">Apply Theme</button>
+            </div>
+            
+            <h4 style="margin: 1rem 0 0.5rem 0; font-size: 0.75rem; color: var(--text-secondary);">Background Image</h4>
+            <div class="background-input-group">
+                <label style="display: block; margin-bottom: 0.25rem; font-size: 0.75rem; color: var(--text-secondary);">Choose Background:</label>
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+                    <input 
+                        type="file" 
+                        id="bg-file" 
+                        accept="image/*"
+                        style="flex: 1;"
+                    >
+                    <button class="port-btn" id="browse-bg-btn">Browse</button>
+                </div>
+                <div style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+                    Current: <span id="bg-current">None</span>
+                </div>
+                <button class="port-btn" id="reset-bg-btn" style="background: var(--danger);">Reset Background</button>
+            </div>
+            <div style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-muted);">
+                <div>📁 Local files only - place images in backgrounds/ folder</div>
+                <div>🖼️ Supported formats: JPG, PNG, WebP</div>
+                <div>🎨 Themes: Add .theme.css files to themes/ folder</div>
+            </div>
+        </div>
+
         <footer class="footer">
             <div class="shortcuts">
                 <span class="shortcut">Ctrl+N: New Task</span>
-                <span class="shortcut">Ctrl+D: Toggle Theme</span>
+                <span class="shortcut">Ctrl+B: Settings</span>
                 <span class="shortcut">Ctrl+P: Port Config</span>
             </div>
         </footer>

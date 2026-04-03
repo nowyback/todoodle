@@ -4,7 +4,12 @@ class TodoApp {
     this.currentFilter = 'all';
     this.currentCategory = 'all';
     this.categories = ['General'];
-    this.darkMode = false;
+    this.darkMode = localStorage.getItem('todoodle-theme') === 'light';
+    this.customBackgrounds = {
+      dark: localStorage.getItem('todoodle-bg-dark') || '',
+      light: localStorage.getItem('todoodle-bg-light') || ''
+    };
+    this.currentTheme = localStorage.getItem('todoodle-custom-theme') || 'default';
     this.init();
   }
 
@@ -16,6 +21,14 @@ class TodoApp {
     this.updateCategorySelect();
     this.render();
     this.updateStats();
+    
+    // Apply current theme and background
+    const currentTheme = this.darkMode ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    this.applyCustomBackground(currentTheme);
+    
+    // Load custom theme
+    this.loadTheme(this.currentTheme);
     
     // Register service worker for PWA
     if ('serviceWorker' in navigator) {
@@ -54,65 +67,37 @@ class TodoApp {
     const todoInput = document.getElementById('todo-input');
     
     addBtn.addEventListener('click', () => this.addTodo());
-    todoInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        this.addTodo();
-      }
-    });
-
-    // Category management
-    const addCategoryBtn = document.getElementById('add-category-btn');
-    const categoryInput = document.getElementById('category-input');
     
-    addCategoryBtn.addEventListener('click', () => this.addCategory());
-    categoryInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        this.addCategory();
-      }
+    // Add category button
+    document.getElementById('add-category-btn').addEventListener('click', () => this.addCategory());
+    
+    // Todo input
+    document.getElementById('todo-input').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') this.addTodo();
     });
-
+    
     // Filter tabs
     document.querySelectorAll('.filter-tab').forEach(tab => {
       tab.addEventListener('click', (e) => {
-        this.setFilter(e.target.dataset.filter);
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        e.target.classList.add('active');
+        this.currentFilter = e.target.dataset.filter;
+        this.render();
       });
     });
-
-    // Clear completed
-    document.getElementById('clear-completed').addEventListener('click', () => {
-      this.clearCompleted();
-    });
-
-    // Port configuration
-    const updatePortBtn = document.getElementById('update-port-btn');
-    const portInput = document.getElementById('port-input');
     
-    updatePortBtn.addEventListener('click', () => this.updatePort());
-    portInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        this.updatePort();
-      }
-    });
-
-    // Show/hide port config
-    document.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
-        e.preventDefault();
-        this.togglePortConfig();
-      }
-    });
-
-    // Electron IPC events
-    if (window.electronAPI) {
-      window.electronAPI.onNewTodo(() => {
-        document.getElementById('todo-input').focus();
-      });
-
-      window.electronAPI.onToggleDarkMode(() => {
-        this.toggleDarkMode();
-      });
-    }
-
+    // Clear completed
+    document.getElementById('clear-completed').addEventListener('click', () => this.clearCompleted());
+    
+    // Port config
+    document.getElementById('update-port-btn').addEventListener('click', () => this.updatePort());
+    
+    // Theme settings buttons
+    document.getElementById('theme-toggle').addEventListener('change', () => this.toggleThemeSwitch());
+    document.getElementById('apply-theme-btn').addEventListener('click', () => this.applySelectedTheme());
+    document.getElementById('browse-bg-btn').addEventListener('click', () => this.setBackgroundFromFile());
+    document.getElementById('reset-bg-btn').addEventListener('click', () => this.resetBackground());
+    
     // Keyboard shortcuts
     document.addEventListener('keydown', (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
@@ -122,6 +107,10 @@ class TodoApp {
       if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
         e.preventDefault();
         this.toggleDarkMode();
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
+        e.preventDefault();
+        this.toggleBackgroundSettings();
       }
     });
   }
@@ -223,7 +212,10 @@ class TodoApp {
 
   toggleDarkMode() {
     this.darkMode = !this.darkMode;
-    document.documentElement.setAttribute('data-theme', this.darkMode ? 'light' : 'dark');
+    const theme = this.darkMode ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('todoodle-theme', theme);
+    this.applyCustomBackground(theme);
   }
 
   updateStats() {
@@ -634,6 +626,158 @@ class TodoApp {
         }, 0);
       }
     }
+  }
+
+  applyCustomBackground(theme) {
+    const bgUrl = this.customBackgrounds[theme];
+    if (bgUrl) {
+      // Only support local files
+      document.body.style.backgroundImage = `url(${bgUrl})`;
+      document.body.style.backgroundSize = 'cover';
+      document.body.style.backgroundPosition = 'center';
+      document.body.style.backgroundAttachment = 'fixed';
+      document.body.style.backgroundRepeat = 'no-repeat';
+    } else {
+      document.body.style.backgroundImage = '';
+    }
+  }
+
+  setCustomBackground(theme, url) {
+    this.customBackgrounds[theme] = url;
+    localStorage.setItem(`todoodle-bg-${theme}`, url);
+    const currentTheme = this.darkMode ? 'light' : 'dark';
+    if (theme === currentTheme) {
+      this.applyCustomBackground(theme);
+    }
+  }
+
+  setBackground(theme) {
+    const input = document.getElementById(`bg-${theme}`);
+    const url = input.value.trim();
+    if (url) {
+      // Only allow local files (no URLs)
+      if (url.startsWith('http://') || url.startsWith('https://')) {
+        alert('Only local files are allowed. Use paths like ./backgrounds/image.jpg');
+        return;
+      }
+      this.setCustomBackground(theme, url);
+      input.value = '';
+    }
+  }
+
+  toggleBackgroundSettings() {
+    const settings = document.getElementById('background-settings');
+    const portConfig = document.getElementById('port-config');
+    if (settings.style.display === 'none') {
+      settings.style.display = 'block';
+      portConfig.style.display = 'none';
+      // Load current values
+      document.getElementById('theme-selector').value = this.currentTheme;
+      // Update toggle switch state
+      const toggleSwitch = document.getElementById('theme-toggle');
+      toggleSwitch.checked = !this.darkMode; // darkMode = false means dark mode is ON
+      // Update background display
+      const currentBg = this.darkMode ? this.customBackgrounds.dark : this.customBackgrounds.light;
+      this.updateBackgroundDisplay(currentBg ? 'Custom' : 'None');
+    } else {
+      settings.style.display = 'none';
+    }
+  }
+
+  toggleThemeSwitch() {
+    const toggleSwitch = document.getElementById('theme-toggle');
+    const isDarkMode = !toggleSwitch.checked; // Inverted: checked = light mode
+    this.darkMode = isDarkMode;
+    const theme = isDarkMode ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('todoodle-theme', theme);
+    this.applyCustomBackground(theme);
+  }
+
+  applySelectedTheme() {
+    const selector = document.getElementById('theme-selector');
+    const themeName = selector.value;
+    this.switchTheme(themeName);
+  }
+
+  setBackgroundFromFile() {
+    const input = document.getElementById('bg-file');
+    const file = input.files[0];
+    
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const dataUrl = e.target.result;
+        const theme = this.darkMode ? 'dark' : 'light';
+        this.setCustomBackground(theme, dataUrl);
+        this.updateBackgroundDisplay(file.name);
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  updateBackgroundDisplay(filename) {
+    const currentSpan = document.getElementById('bg-current');
+    currentSpan.textContent = filename || 'None';
+  }
+
+  loadAvailableThemes() {
+    // This will be implemented to auto-detect themes
+    const themeSelector = document.getElementById('theme-selector');
+    // For now, keep the hardcoded options
+  }
+
+  resetBackground() {
+    const theme = this.darkMode ? 'dark' : 'light';
+    this.setCustomBackground(theme, '');
+    // Clear file input
+    const fileInput = document.getElementById('bg-file');
+    fileInput.value = '';
+    // Update display
+    this.updateBackgroundDisplay('None');
+  }
+
+  resetAllBackgrounds() {
+    this.setCustomBackground('dark', '');
+    this.setCustomBackground('light', '');
+    // Clear file input
+    const fileInput = document.getElementById('bg-file');
+    fileInput.value = '';
+    // Update display
+    this.updateBackgroundDisplay('None');
+  }
+
+  loadTheme(themeName) {
+    if (themeName === 'default') {
+      this.removeThemeStyles();
+    } else {
+      this.loadThemeCSS(themeName);
+    }
+    this.currentTheme = themeName;
+    localStorage.setItem('todoodle-custom-theme', themeName);
+  }
+
+  loadThemeCSS(themeName) {
+    // Remove existing theme
+    this.removeThemeStyles();
+    
+    // Create and load new theme
+    const link = document.createElement('link');
+    link.id = 'custom-theme';
+    link.rel = 'stylesheet';
+    link.href = `./themes/${themeName}.theme.css`;
+    document.head.appendChild(link);
+  }
+
+  removeThemeStyles() {
+    const existingTheme = document.getElementById('custom-theme');
+    if (existingTheme) {
+      existingTheme.remove();
+    }
+  }
+
+  switchTheme(themeName) {
+    this.loadTheme(themeName);
   }
 }
 

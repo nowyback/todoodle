@@ -1,12 +1,14 @@
 const { app, BrowserWindow, ipcMain, globalShortcut } = require('electron');
 const path = require('path');
 
+let mainWindow;
+
 // Set app icon before creating windows
 if (process.platform === 'win32') {
-  app.setAppUserModelId('com.todoodle.app');
+  app.whenReady().then(() => {
+    app.setAppUserModelId('com.todoodle.app');
+  });
 }
-
-let mainWindow;
 
 function createWindow() {
   // Create the browser window

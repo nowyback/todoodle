@@ -1,0 +1,98 @@
+/**
+ * @name Translucent Theme
+ * @description A translucent/frosted glass theme with blur effects
+ */
+
+:root {
+  /* Translucent Color Palette */
+  --primary-color: #9ca3ff;
+  --background: #0f0f23;
+  --background-rgb: 15, 15, 35;
+  --surface: rgba(255, 255, 255, 0.05);
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted: #666;
+  --border: rgba(255, 255, 255, 0.1);
+  --danger: #ff6b6b;
+  --warning: #ffd93d;
+  --success: #6bcf7f;
+  --warning-light: #ffed4e;
+  --progress-red: #ff6b6b;
+  --progress-orange: #ffa94d;
+  --progress-yellow: #ffd93d;
+  --progress-green: #6bcf7f;
+  --progress-purple: #c77dff;
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+}
+
+/* Translucent specific styles */
+.header {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(156, 163, 255, 0.3);
+}
+
+.todo-item {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.todo-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(156, 163, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(156, 163, 255, 0.15);
+}
+
+.category-filter {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.category-filter.active {
+  background: rgba(156, 163, 255, 0.3);
+  color: #ffffff;
+  border-color: rgba(156, 163, 255, 0.5);
+}
+
+.category-filter:hover {
+  background: rgba(156, 163, 255, 0.2);
+  border-color: rgba(156, 163, 255, 0.4);
+}
+
+/* Glass morphism containers */
+.port-config-container,
+.background-settings-container {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Frosted glass inputs */
+.port-input,
+.category-input,
+.todo-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.port-input:focus,
+.category-input:focus,
+.todo-input:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #9ca3ff;
+  box-shadow: 0 0 20px rgba(156, 163, 255, 0.3);
+}

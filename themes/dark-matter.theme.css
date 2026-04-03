@@ -1,0 +1,182 @@
+/**
+ * @name Dark Matter Theme
+ * @description A cold, dark & frosty theme adapted for Todoodle
+ */
+
+:root {
+  /* Dark Matter Color Palette */
+  --primary-color: #25ace8;
+  --background: #161921;
+  --background-rgb: 22, 25, 33;
+  --surface: #1c1f28;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted: #666;
+  --border: #2c2f38;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --success: #10b981;
+  --warning-light: #fbbf24;
+  --progress-red: #ef4444;
+  --progress-orange: #f97316;
+  --progress-yellow: #eab308;
+  --progress-green: #22c55e;
+  --progress-purple: #a855f7;
+  --shadow: 0 1px 3px 0 rgba(37, 172, 232, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(37, 172, 232, 0.4);
+}
+
+/* Light mode variant */
+[data-theme="light"] {
+  --primary-color: #1d8ac7;
+  --background: #f8fafc;
+  --background-rgb: 248, 250, 252;
+  --surface: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --border: #e2e8f0;
+}
+
+/* Dark Matter specific styles - use !important to override default styles */
+.header {
+  background: rgba(22, 25, 33, 0.9) !important;
+  border-bottom: 1px solid #25ace8 !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+[data-theme="light"] .header {
+  background: rgba(248, 250, 252, 0.9) !important;
+  border-bottom: 1px solid #1d8ac7 !important;
+}
+
+.todo-item {
+  background: rgba(28, 31, 40, 0.9) !important;
+  border: 1px solid #2c2f38 !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+[data-theme="light"] .todo-item {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.todo-item:hover {
+  border-color: #25ace8 !important;
+  box-shadow: 0 1px 3px 0 rgba(37, 172, 232, 0.5) !important;
+}
+
+[data-theme="light"] .todo-item:hover {
+  border-color: #1d8ac7 !important;
+  box-shadow: 0 1px 3px 0 rgba(29, 138, 199, 0.5) !important;
+}
+
+.category-filter.active {
+  background: #25ace8 !important;
+  color: #ffffff !important;
+  border-color: #25ace8 !important;
+}
+
+[data-theme="light"] .category-filter.active {
+  background: #1d8ac7 !important;
+  color: #ffffff !important;
+  border-color: #1d8ac7 !important;
+}
+
+.category-filter:hover {
+  background: #1d8ac7 !important;
+  color: #ffffff !important;
+  border-color: #1d8ac7 !important;
+}
+
+[data-theme="light"] .category-filter:hover {
+  background: #25ace8 !important;
+  color: #ffffff !important;
+  border-color: #25ace8 !important;
+}
+
+/* Progress bars */
+.progress-fill {
+  background: #25ace8 !important;
+}
+
+/* Buttons */
+.add-btn, .add-category-btn, .port-btn, #apply-theme-btn, #browse-bg-btn, #reset-bg-btn {
+  background: #25ace8 !important;
+  border-color: #25ace8 !important;
+}
+
+.add-btn:hover, .add-category-btn:hover, .port-btn:hover, 
+#apply-theme-btn:hover, #browse-bg-btn:hover, #reset-bg-btn:hover {
+  background: #1d8ac7 !important;
+  border-color: #1d8ac7 !important;
+}
+
+/* Filter tabs */
+.filter-tab.active {
+  background: #25ace8 !important;
+  color: #ffffff !important;
+  border-color: #25ace8 !important;
+}
+
+.filter-tab:hover {
+  background: #1d8ac7 !important;
+  color: #ffffff !important;
+  border-color: #1d8ac7 !important;
+}
+
+/* Input fields */
+.todo-input, .category-input, .port-input, #theme-selector {
+  background: rgba(28, 31, 40, 0.8) !important;
+  border: 1px solid #2c2f38 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .todo-input, 
+[data-theme="light"] .category-input, 
+[data-theme="light"] .port-input, 
+[data-theme="light"] #theme-selector {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+.todo-input:focus, .category-input:focus, .port-input:focus {
+  border-color: #25ace8 !important;
+  box-shadow: 0 0 0 2px rgba(37, 172, 232, 0.2) !important;
+}
+
+/* Settings containers */
+.port-config-container, .background-settings-container, .theme-toggle-container {
+  background: rgba(28, 31, 40, 0.9) !important;
+  border: 1px solid #2c2f38 !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+[data-theme="light"] .port-config-container, 
+[data-theme="light"] .background-settings-container, 
+[data-theme="light"] .theme-toggle-container {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* Toggle switch */
+.slider {
+  background-color: #2c2f38 !important;
+}
+
+input:checked + .slider {
+  background-color: #25ace8 !important;
+}
+
+/* Footer */
+.footer {
+  border-top: 1px solid #2c2f38 !important;
+}
+
+[data-theme="light"] .footer {
+  border-top: 1px solid #e2e8f0 !important;
+}
