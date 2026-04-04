@@ -14,7 +14,7 @@ This guide explains how to set up Todoodle with a backend server for advanced fu
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/todoodle.git
+   git clone https://github.com/nowyback/todoodle.git
    cd todoodle
    ```
 

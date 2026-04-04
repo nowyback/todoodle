@@ -37,7 +37,7 @@ This folder contains the Todoodle application downloads and documentation.
 
 ## 🐛 Issues
 
-Found a bug? [Report it here](https://github.com/yourusername/todoodle/issues)
+Found a bug? [Report it here](https://github.com/nowyback/todoodle/issues)
 
 ## 📄 License
 

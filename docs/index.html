@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todoodle - A Minimalist Todo App</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background: gray;
+            color: white;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .button-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: #666;
+            text-align: center;
+        }
+
+        .main-btn {
+            display: inline-block;
+            background: #555;
+            color: white;
+            text-decoration: none;
+            padding: 20px 40px;
+            margin: 10px;
+            font-size: 1.1rem;
+        }
+
+        .main-btn:hover {
+            background: #444;
+        }
+
+        .feature-section {
+            background: #666;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #999;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Todoodle</h1>
+        <p>A minimalist todo app for developers</p>
+
+        <div class="button-section">
+            <h2>Get Started</h2>
+            <a href="download.html" class="main-btn">
+                Download Todoodle
+            </a>
+            <a href="CONSOLE.md" class="main-btn">
+                Console Version
+            </a>
+            <a href="SERVER_SETUP.md" class="main-btn">
+                Server Setup
+            </a>
+            <a href="https://github.com/nowyback/todoodle" class="main-btn">
+                View on GitHub
+            </a>
+        </div>
+
+        <div class="feature-section">
+            <h3>Features</h3>
+            <ul>
+                <li>Desktop App - Full-featured Electron application with themes and backgrounds</li>
+                <li>Console Version - Complete command-line interface for terminal users</li>
+                <li>Custom Themes - Personalize your workspace with custom CSS themes</li>
+                <li>Background Images - Set custom backgrounds that override theme backgrounds</li>
+                <li>Dark/Light Mode - Toggle between dark and light themes</li>
+                <li>PWA Ready - Works as a Progressive Web App on mobile devices</li>
+                <li>Categories - Organize tasks by category</li>
+                <li>Progress Tracking - Track completion progress for tasks</li>
+                <li>Local Storage - All data stored locally, privacy-focused</li>
+                <li>Lightweight - Fast and efficient with minimal resource usage</li>
+            </ul>
+        </div>
+
+        <div class="feature-section">
+            <h3>Quick Start</h3>
+            <p><strong>Desktop Users:</strong> <a href="download.html">Download the Windows installer</a> and run it.</p>
+            <p><strong>Console Users:</strong> <a href="CONSOLE.md">Use the command-line version</a> with <code>npm run console</code></p>
+            <p><strong>For Developers:</strong> <a href="SERVER_SETUP.md">Set up the development server</a> with these commands:</p>
+            <pre style="background: #555; padding: 15px; overflow-x: auto;">
+git clone https://github.com/nowyback/todoodle.git
+cd todoodle
+npm install
+npm run console    # Start console version
+npm start         # Start desktop app
+npm run server    # Start API server</pre>
+        </div>
+
+        <div class="feature-section">
+            <h3>Custom Themes</h3>
+            <p>Create your own themes by dropping <code>.theme.css</code> files in the <code>src/themes/</code> folder:</p>
+            <ul>
+                <li>Copy <code>src/themes/TEMPLATE.theme.template</code></li>
+                <li>Rename to <code>your-theme.theme.css</code></li>
+                <li>Customize colors and styles</li>
+                <li>Select in app settings (Ctrl+B)</li>
+            </ul>
+            <p>Available themes: Dark Matter, Fallout Terminal, Translucent, and more.</p>
+        </div>
+
+        <div class="feature-section">
+            <h3>System Requirements</h3>
+            <ul>
+                <li>Windows 10 or later</li>
+                <li>2GB RAM minimum</li>
+                <li>100MB disk space</li>
+                <li>Internet connection for updates (optional)</li>
+            </ul>
+        </div>
+
+        <div class="feature-section">
+            <h3>Documentation</h3>
+            <ul>
+                <li><a href="download.html">Download Page</a> - Get the latest version</li>
+                <li><a href="CONSOLE.md">Console Version</a> - Command-line interface guide</li>
+                <li><a href="SERVER_SETUP.md">Server Setup Guide</a> - Advanced configuration</li>
+                <li><a href="README.md">Downloads Documentation</a> - Download information</li>
+                <li><a href="RELEASE_NOTES_v0.11.3.md">Release Notes</a> - Latest changes</li>
+                <li><a href="../src/themes/README.md">Theme Creation Guide</a> - Create custom themes</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p>
+                Made with ❤️ for developers<br>
+                <a href="https://github.com/nowyback/todoodle">GitHub Repository</a> • 
+                <a href="https://github.com/nowyback/todoodle/issues">Report Issues</a> • 
+                <a href="download.html">Download Todoodle</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
