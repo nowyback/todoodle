@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todoodle - Download</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background: gray;
+            color: white;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        pre {
+            background: #666;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        code {
+            background: #666;
+            padding: 2px 5px;
+        }
+
+        .download-section {
+            margin: 40px 0;
+            padding: 20px;
+            background: #666;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: #555;
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            margin: 10px 0;
+        }
+
+        .download-btn:hover {
+            background: #444;
+        }
+
+        .version {
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .requirements {
+            background: #666;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #999;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Todoodle - Download</h1>
+        <p>A minimalist todo app for developers</p>
+
+        <div class="download-section">
+            <h2>Download</h2>
+            <a href="Todoodle%20Setup%200.11.3.exe" class="download-btn">
+                Download for Windows
+            </a>
+            <div class="version">Version 0.11.3 • Windows 10/11</div>
+            <div style="margin-top: 20px;">
+                <a href="SERVER_SETUP.md" class="download-btn">
+                    Server Setup Guide
+                </a>
+            </div>
+            <div style="margin-top: 20px;">
+                <a href="todoodle-server-v0.11.4.zip" class="download-btn">
+                    Download Server Package
+                </a>
+            </div>
+            <div class="version">Server Version 0.11.4 • Cross-platform</div>
+        </div>
+
+        <h2>Features</h2>
+        <ul>
+            <li>Custom Themes - Personalize your workspace</li>
+            <li>Background Images - Set custom backgrounds</li>
+            <li>PWA Ready - Mobile compatible</li>
+            <li>Lightweight - Fast & efficient</li>
+        </ul>
+
+        <div class="requirements">
+            <h3>System Requirements</h3>
+            <ul>
+                <li>Windows 10 or later</li>
+                <li>2GB RAM minimum</li>
+                <li>100MB disk space</li>
+                <li>Internet connection for updates</li>
+            </ul>
+        </div>
+
+        <div class="requirements">
+            <h3>Todoodle Server Setup</h3>
+            <p>For advanced users who want to run Todoodle with a backend server:</p>
+            <ul>
+                <li>Node.js 16+ installed</li>
+                <li>npm package manager</li>
+                <li>Terminal/command prompt access</li>
+                <li>Local network access</li>
+            </ul>
+            <div>
+                <h4>Quick Setup:</h4>
+                <pre>
+# Clone the server branch
+git clone --branch server https://github.com/nowyback/todoodle.git
+cd todoodle
+
+# Install dependencies
+npm install
+
+# Start the server
+npm run server
+
+# Access the application
+# http://localhost:3001
+</pre>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>
+                Made with ❤️ for developers<br>
+                <a href="https://github.com/nowyback/todoodle">View on GitHub</a> • 
+                <a href="https://github.com/nowyback/todoodle/issues">Report Issues</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

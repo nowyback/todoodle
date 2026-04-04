@@ -126,6 +126,75 @@ out/
 # Application specific
 todos-api.json
 api-config.json
+*.theme.css
+backgrounds/*.jpg
+backgrounds/*.png
+backgrounds/*.gif
+backgrounds/*.webp
+src/backgrounds/*.jpg
+src/backgrounds/*.png
+src/backgrounds/*.gif
+src/backgrounds/*.webp
+
+# User generated content
+user-themes/
+custom-backgrounds/
+versions/
+
+# Build artifacts
+*.exe
+*.blockmap
+*.yml
+*.yaml
+win-unpacked/
+dist/
+app/
+out/
+
+# Old installers and versions
+Todoodle*.exe
+*Setup*.exe
+*v*.exe
+
+# Allow specific installer for gh-pages
+!docs/Todoodle Setup 0.11.3.exe
+
+# Development files
+start.bat
+*.log
+.DS_Store
+Thumbs.db
+
+# Server installation files (exclude from main, include in server branch)
+# Uncomment these lines for main branch, comment for server branch
+SERVER_INSTALL.md
+install.sh
+install.bat
+server-package.json
+Dockerfile
+docker-compose-server.yml
+start-server.bat
+
+# Server data and logs
+data/
+logs/
+backups/
+src/todos-api.json
+src/api-config.json
+
+# Console files (exclude from main, include in server branch)
+# Uncomment these lines for main branch, comment for server branch
+console-server.js
+todos-console.json
+
+# Theme files (user generated only)
+themes/*.theme.css
+src/themes/*.theme.css
+!src/themes/example-custom.theme.css
+!src/themes/dark-matter.theme.css
+!src/themes/fallout-terminal.theme.css
+!src/themes/translucent.theme.css
+!src/themes/TEMPLATE.theme.template
 
 # OS generated files
 .DS_Store
