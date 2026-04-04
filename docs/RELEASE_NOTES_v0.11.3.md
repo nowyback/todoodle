@@ -1,4 +1,4 @@
-# Todoodle v0.11.0 Release Notes
+# Todoodle v0.11.3 Release Notes
 
 ## 🎉 New Features
 
@@ -53,7 +53,7 @@ themes/
 - **Requirements**: Windows 10 or later
 
 ### Installation Steps
-1. Download `Todoodle Setup 0.11.0.exe`
+1. Download [Todoodle Setup 0.11.3.exe](https://www.dropbox.com/scl/fi/68s345s0s91vejpv8yk1d/Todoodle-Setup-0.11.3.exe?rlkey=jmfrgsm9n0rwk7uvw79j5j0po&st=4px93z8j&dl=0)
 2. Run installer as administrator
 3. Choose installation directory
 4. Create desktop shortcut (optional)
