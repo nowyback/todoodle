@@ -1,6 +1,6 @@
 {
   "name": "todoodle",
-  "version": "0.9.0",
+  "version": "0.11.4",
   "description": "A minimalist todo app for developers with PWA and mobile support",
   "main": "src/main.js",
   "scripts": {
@@ -9,6 +9,9 @@
     "dev": "electron . --dev",
     "api": "node src/api-server.js",
     "api-dev": "nodemon src/api-server.js",
+    "console": "node console.js",
+    "console-server": "node console-server.js",
+    "server": "node src/api-server.js",
     "build": "echo 'No build step needed for web app'",
     "pwa": "echo 'PWA ready - serve with any HTTP server'",
     "capacitor:add": "npx cap init Todoodle com.todoodle.app && npx cap add android",
@@ -18,7 +21,10 @@
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
     "dist-win": "electron-builder --win",
-    "portable": "electron-builder --win --portable"
+    "dist-mac": "electron-builder --mac",
+    "dist-linux": "electron-builder --linux",
+    "portable": "electron-builder --win portable",
+    "publish": "electron-builder --win --publish always"
   },
   "keywords": [
     "todo",
