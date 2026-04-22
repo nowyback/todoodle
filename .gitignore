@@ -155,9 +155,10 @@ out/
 Todoodle*.exe
 *Setup*.exe
 *v*.exe
+*.zip
 
 # Allow specific installer for gh-pages
-!docs/Todoodle Setup 0.11.3.exe
+!docs/Todoodle Setup 0.12.2.exe
 
 # Development files
 start.bat
